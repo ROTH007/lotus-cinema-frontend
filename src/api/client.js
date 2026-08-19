@@ -1,6 +1,9 @@
 // Central API client for Lotus Cinema.
 // In dev, Vite proxies /api -> http://localhost:4000 (see vite.config.js).
-// In production (served by Express), /api is same-origin.
+// In production (frontend on Vercel, backend on Render), VITE_API_URL
+// points at the deployed backend, e.g. https://lotus-cinema-backend.onrender.com
+
+const API_BASE = import.meta.env.VITE_API_URL || "";
 
 const TOKEN_KEY = "lotus_token";
 const USER_KEY = "lotus_user";
@@ -32,7 +35,7 @@ export async function api(path, { method = "GET", body } = {}) {
   const headers = { "Content-Type": "application/json" };
   if (Auth.token) headers.Authorization = `Bearer ${Auth.token}`;
 
-  const res = await fetch(`/api${path}`, {
+  const res = await fetch(`${API_BASE}/api${path}`, {
     method,
     headers,
     body: body ? JSON.stringify(body) : undefined,
@@ -84,6 +87,7 @@ export const FavoritesAPI = {
   remove: (movieId) => api(`/favorites/${movieId}`, { method: "DELETE" }),
 };
 
+// Snacks & drinks (concessions)
 export const ConcessionsAPI = {
   list: () => api(`/concessions`),
   listAll: () => api(`/concessions?all=1`),
