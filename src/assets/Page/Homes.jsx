@@ -49,11 +49,11 @@ function Homes() {
 
   // Render movie section
   const renderMovieSection = (title, movies) => (
-    <div className="px-6 py-10">
-      <h2 className="text-3xl font-bold mb-6">{title}</h2>
+    <div className="px-4 py-6 sm:px-6 sm:py-10">
+      <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 sm:mb-6">{title}</h2>
       <div className="relative overflow-hidden">
         <div
-          className="flex gap-6 whitespace-nowrap animate-marquee"
+          className="flex gap-3 sm:gap-4 md:gap-6 whitespace-nowrap animate-marquee"
           onMouseEnter={(e) => (e.currentTarget.style.animationPlayState = "paused")}
           onMouseLeave={(e) => (e.currentTarget.style.animationPlayState = "running")}
         >
@@ -67,7 +67,7 @@ function Homes() {
                 src={movie.poster}
                 alt={movie.title}
                 title={movie.title}
-                className="w-52 h-72 object-cover rounded-lg shadow-lg"
+                className="w-32 h-48 sm:w-40 sm:h-60 md:w-52 md:h-72 object-cover rounded-lg shadow-lg"
                 draggable={false}
               />
             </Link>
@@ -80,7 +80,7 @@ function Homes() {
   // Show loading screen
   if (loading) {
     return (
-      <div className="fixed inset-0 flex flex-col items-center justify-center bg-black text-white z-50 overflow-hidden">
+      <div className="fixed inset-0 flex flex-col items-center justify-center bg-black text-white z-50 overflow-hidden px-4">
         {/* Animated grid background */}
         <div className="absolute inset-0 opacity-20">
           <div className="absolute inset-0 grid-background" />
@@ -98,8 +98,8 @@ function Homes() {
                 boxShadow: '0 0 10px rgba(239, 68, 68, 0.8)'
               }}
               animate={{
-                x: [0, (Math.random() - 0.5) * 1000],
-                y: [0, (Math.random() - 0.5) * 1000],
+                x: [0, (Math.random() - 0.5) * 600],
+                y: [0, (Math.random() - 0.5) * 600],
                 opacity: [1, 0],
                 scale: [1, 0]
               }}
@@ -120,7 +120,7 @@ function Homes() {
               key={`line-${i}`}
               className="absolute h-0.5 bg-gradient-to-r from-transparent via-cyan-400 to-transparent"
               style={{
-                width: `${100 + Math.random() * 200}px`,
+                width: `${80 + Math.random() * 150}px`,
                 top: `${Math.random() * 100}%`,
                 left: '-200px'
               }}
@@ -146,8 +146,8 @@ function Homes() {
               className="absolute border-2 border-red-500 rounded-full"
               initial={{ width: 0, height: 0, opacity: 0.8 }}
               animate={{
-                width: [0, 800],
-                height: [0, 800],
+                width: [0, 500],
+                height: [0, 500],
                 opacity: [0.8, 0],
                 borderWidth: [4, 0]
               }}
@@ -196,37 +196,37 @@ function Homes() {
         {/* Logo with holographic frame and shake effect */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ 
-            opacity: 1, 
+          animate={{
+            opacity: 1,
             scale: 1,
             rotate: [0, -2, 2, -2, 0]
           }}
-          transition={{ 
+          transition={{
             opacity: { duration: 0.8 },
             scale: { duration: 0.8 },
             rotate: { duration: 0.5, repeat: Infinity, repeatDelay: 2 }
           }}
-          className="relative mb-12 z-10"
+          className="relative mb-8 sm:mb-12 z-10"
         >
           {/* Outer frame corners with glow */}
-          <div className="absolute -inset-4">
-            <motion.div 
-              className="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-red-500"
+          <div className="absolute -inset-3 sm:-inset-4">
+            <motion.div
+              className="absolute top-0 left-0 w-4 h-4 sm:w-6 sm:h-6 border-t-2 border-l-2 border-red-500"
               animate={{ opacity: [0.5, 1, 0.5] }}
               transition={{ duration: 1, repeat: Infinity }}
             />
-            <motion.div 
-              className="absolute top-0 right-0 w-6 h-6 border-t-2 border-r-2 border-red-500"
+            <motion.div
+              className="absolute top-0 right-0 w-4 h-4 sm:w-6 sm:h-6 border-t-2 border-r-2 border-red-500"
               animate={{ opacity: [0.5, 1, 0.5] }}
               transition={{ duration: 1, repeat: Infinity, delay: 0.25 }}
             />
-            <motion.div 
-              className="absolute bottom-0 left-0 w-6 h-6 border-b-2 border-l-2 border-red-500"
+            <motion.div
+              className="absolute bottom-0 left-0 w-4 h-4 sm:w-6 sm:h-6 border-b-2 border-l-2 border-red-500"
               animate={{ opacity: [0.5, 1, 0.5] }}
               transition={{ duration: 1, repeat: Infinity, delay: 0.5 }}
             />
-            <motion.div 
-              className="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-red-500"
+            <motion.div
+              className="absolute bottom-0 right-0 w-4 h-4 sm:w-6 sm:h-6 border-b-2 border-r-2 border-red-500"
               animate={{ opacity: [0.5, 1, 0.5] }}
               transition={{ duration: 1, repeat: Infinity, delay: 0.75 }}
             />
@@ -235,17 +235,17 @@ function Homes() {
           {/* Glowing pulse effect */}
           <motion.div
             className="absolute inset-0 blur-2xl bg-red-500"
-            animate={{ 
+            animate={{
               opacity: [0.2, 0.6, 0.2],
               scale: [1, 1.2, 1]
             }}
             transition={{ duration: 1.5, repeat: Infinity }}
           />
 
-          <img 
-            src="/videos/logo.png" 
-            alt="Logo" 
-            className="relative z-10 h-24 w-auto logo-glow"
+          <img
+            src="/videos/logo.png"
+            alt="Logo"
+            className="relative z-10 h-14 sm:h-20 md:h-24 w-auto logo-glow"
           />
 
           {/* Multiple scanning lines */}
@@ -263,24 +263,24 @@ function Homes() {
         </motion.div>
 
         {/* Advanced circular HUD spinner with trails */}
-        <div className="relative w-40 h-40 mb-8">
+        <div className="relative w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 mb-6 sm:mb-8">
           {/* Outer ring segments with trails */}
           {[...Array(12)].map((_, i) => (
             <motion.div
               key={`segment-${i}`}
               className="absolute inset-0"
               style={{ rotate: `${i * 30}deg` }}
-              animate={{ 
+              animate={{
                 opacity: [0.2, 1, 0.2],
                 scale: [0.9, 1.1, 0.9]
               }}
-              transition={{ 
-                duration: 1.5, 
-                repeat: Infinity, 
-                delay: i * 0.08 
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                delay: i * 0.08
               }}
             >
-              <div className="w-1.5 h-8 bg-gradient-to-b from-red-500 to-transparent rounded-full mx-auto" />
+              <div className="w-1 h-5 sm:w-1.5 sm:h-8 bg-gradient-to-b from-red-500 to-transparent rounded-full mx-auto" />
             </motion.div>
           ))}
 
@@ -293,7 +293,7 @@ function Homes() {
 
           {/* Counter-rotating middle ring */}
           <motion.div
-            className="absolute inset-6 border-2 border-cyan-400 rounded-full"
+            className="absolute inset-4 sm:inset-6 border-2 border-cyan-400 rounded-full"
             style={{ borderTopColor: 'transparent', borderLeftColor: 'transparent' }}
             animate={{ rotate: -360 }}
             transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
@@ -301,8 +301,8 @@ function Homes() {
 
           {/* Inner pulsing circle with energy */}
           <motion.div
-            className="absolute inset-10 border-2 border-red-400 rounded-full"
-            animate={{ 
+            className="absolute inset-7 sm:inset-10 border-2 border-red-400 rounded-full"
+            animate={{
               scale: [1, 1.3, 1],
               opacity: [0.3, 1, 0.3],
               rotate: 360
@@ -313,8 +313,8 @@ function Homes() {
           {/* Center energy core */}
           <div className="absolute inset-0 flex items-center justify-center">
             <motion.div
-              className="w-4 h-4 bg-red-500 rounded-full"
-              animate={{ 
+              className="w-3 h-3 sm:w-4 sm:h-4 bg-red-500 rounded-full"
+              animate={{
                 scale: [1, 1.8, 1],
                 boxShadow: [
                   '0 0 10px rgba(239, 68, 68, 0.8)',
@@ -329,21 +329,22 @@ function Homes() {
 
         {/* System status text with glitch effect */}
         <motion.div
-          className="text-center space-y-3"
+          className="text-center space-y-2 sm:space-y-3 px-2"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
         >
-          <div className="flex items-center justify-center gap-3 font-mono text-cyan-400 text-sm">
-            <motion.span 
-              className="text-red-500 text-lg"
+          <div className="flex items-center justify-center gap-2 sm:gap-3 font-mono text-cyan-400 text-xs sm:text-sm">
+            <motion.span
+              className="text-red-500 text-base sm:text-lg"
               animate={{ scale: [1, 1.5, 1] }}
               transition={{ duration: 1, repeat: Infinity }}
             >
               ●
             </motion.span>
             <motion.span
-              animate={{ 
+              className="whitespace-nowrap"
+              animate={{
                 opacity: [0.5, 1, 0.5],
                 textShadow: [
                   '0 0 5px rgba(6, 182, 212, 0.5)',
@@ -367,8 +368,8 @@ function Homes() {
           </div>
 
           <motion.div
-            className="font-mono text-red-500 text-xs tracking-widest"
-            animate={{ 
+            className="font-mono text-red-500 text-[10px] sm:text-xs tracking-widest"
+            animate={{
               opacity: [0.7, 1, 0.7],
               scale: [1, 1.05, 1]
             }}
@@ -379,7 +380,7 @@ function Homes() {
         </motion.div>
 
         {/* Dynamic progress bars with energy flow */}
-        <div className="mt-8 space-y-2 w-80">
+        <div className="mt-6 sm:mt-8 space-y-2 w-full max-w-[260px] sm:max-w-xs md:max-w-sm">
           {[60, 80, 45].map((width, i) => (
             <motion.div
               key={`bar-${i}`}
@@ -393,9 +394,9 @@ function Homes() {
                   className="h-full bg-gradient-to-r from-red-600 via-red-500 to-cyan-400 rounded-full progress-bar relative"
                   initial={{ width: "0%" }}
                   animate={{ width: `${width}%` }}
-                  transition={{ 
-                    duration: 2, 
-                    repeat: Infinity, 
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
                     ease: "easeInOut",
                     delay: i * 0.3
                   }}
@@ -419,14 +420,14 @@ function Homes() {
         </div>
 
         {/* Corner UI elements with animation */}
-        <motion.div 
-          className="absolute top-8 left-8 font-mono text-xs text-gray-600"
+        <motion.div
+          className="hidden sm:block absolute top-6 left-6 md:top-8 md:left-8 font-mono text-[10px] md:text-xs text-gray-600"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1 }}
         >
           <div>VER 2.0.1</div>
-          <motion.div 
+          <motion.div
             className="text-red-500"
             animate={{ opacity: [0.5, 1, 0.5] }}
             transition={{ duration: 1.5, repeat: Infinity }}
@@ -435,14 +436,14 @@ function Homes() {
           </motion.div>
         </motion.div>
 
-        <motion.div 
-          className="absolute bottom-8 right-8 font-mono text-xs text-gray-600 text-right"
+        <motion.div
+          className="hidden sm:block absolute bottom-6 right-6 md:bottom-8 md:right-8 font-mono text-[10px] md:text-xs text-gray-600 text-right"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1 }}
         >
           <div>SYS_ID: {Date.now().toString().slice(-6)}</div>
-          <motion.div 
+          <motion.div
             className="text-cyan-400"
             animate={{ opacity: [0.5, 1, 0.5] }}
             transition={{ duration: 1.5, repeat: Infinity }}
@@ -453,7 +454,7 @@ function Homes() {
 
         <style>{`
           .grid-background {
-            background-image: linear-gradient(rgba(239, 68, 68, 0.1) 1px, transparent 1px), 
+            background-image: linear-gradient(rgba(239, 68, 68, 0.1) 1px, transparent 1px),
                               linear-gradient(90deg, rgba(239, 68, 68, 0.1) 1px, transparent 1px);
             background-size: 50px 50px;
             animation: gridMove 20s linear infinite;
@@ -487,9 +488,9 @@ function Homes() {
   const heroMovie = moviesData.trending[index];
 
   return (
-    <div className="bg-black text-white min-h-screen font-sans">
+    <div className="bg-black text-white min-h-screen font-sans overflow-x-hidden">
       {/* ===== HERO SLIDER ===== */}
-      <section className="relative h-[80vh] md:h-[90vh] flex items-end justify-start overflow-hidden">
+      <section className="relative h-[60vh] sm:h-[75vh] md:h-[90vh] flex items-end justify-start overflow-hidden">
         <div className="absolute inset-0">
           {moviesData.trending.map((movie, i) => (
             <img
@@ -504,18 +505,18 @@ function Homes() {
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent" />
         </div>
 
-        <div className="relative z-10 max-w-3xl p-10">
-          <p className="text-red-500 font-semibold tracking-widest text-sm mb-2">
+        <div className="relative z-10 w-full max-w-3xl p-4 sm:p-6 md:p-10">
+          <p className="text-red-500 font-semibold tracking-widest text-xs sm:text-sm mb-2">
             {t("NOW SHOWING", "កំពុងចាក់បញ្ចាំង")}
           </p>
-          <h1 className="text-4xl md:text-6xl font-extrabold mb-4 drop-shadow-lg">
+          <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-extrabold mb-3 sm:mb-4 drop-shadow-lg">
             {heroMovie
               ? isKhmer && heroMovie.titleKm
                 ? heroMovie.titleKm
                 : heroMovie.title
               : t("Up Coming Movie !!", "ភាពយន្តដែលនឹងមកដល់ឆាប់ៗនេះ !!")}
           </h1>
-          <p className="text-gray-300 text-lg max-w-2xl mb-6 line-clamp-3">
+          <p className="text-gray-300 text-sm sm:text-base md:text-lg max-w-2xl mb-4 sm:mb-6 line-clamp-2 sm:line-clamp-3">
             {heroMovie?.overview ||
               t(
                 "Book your seat at Lotus Cinema.",
@@ -523,16 +524,16 @@ function Homes() {
               )}
           </p>
 
-          <div className="flex gap-4">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
             <Link
               to={heroMovie ? `/Detail/${heroMovie.id}` : "/Movie"}
-              className="flex items-center gap-2 bg-red-600 text-white px-6 py-3 rounded-md font-semibold hover:bg-red-700 transition"
+              className="flex items-center justify-center sm:justify-start gap-2 w-full sm:w-auto bg-red-600 text-white px-6 py-3 rounded-md font-semibold hover:bg-red-700 transition"
             >
               <Play size={18} /> {t("Book Now", "កក់ឥឡូវ")}
             </Link>
             <Link
               to={heroMovie ? `/Detail/${heroMovie.id}` : "/Movie"}
-              className="flex items-center gap-2 bg-gray-700 text-white px-6 py-3 rounded-md font-semibold hover:bg-gray-600 transition"
+              className="flex items-center justify-center sm:justify-start gap-2 w-full sm:w-auto bg-gray-700 text-white px-6 py-3 rounded-md font-semibold hover:bg-gray-600 transition"
             >
               <Info size={18} /> {t("More Info", "ព័ត៌មានបន្ថែម")}
             </Link>

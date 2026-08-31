@@ -103,29 +103,38 @@ function MovieDetail() {
       </div>
 
       {/* Header Section */}
+      {/* min-h (not a fixed h) on mobile lets this grow with its content instead of
+          clipping/overlapping the section below when the poster + title + buttons
+          don't fit in a short viewport height. Locks back to a fixed h from sm: up,
+          same as before. */}
       <section
-        className="relative h-[60vh] sm:h-[70vh] flex flex-col sm:flex-row items-end justify-start bg-cover bg-center"
+        className="relative min-h-[85vh] sm:h-[70vh] flex flex-col sm:flex-row items-end justify-start bg-cover bg-center py-8 sm:py-0"
         style={{ backgroundImage: `url(${m.banner})` }}
       >
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
 
-        <div className="relative z-10 flex flex-col sm:flex-row items-center sm:items-end justify-between w-full px-4 sm:px-8 pb-8 sm:pb-10 gap-6 sm:gap-8">
+        <div className="relative z-10 flex flex-col sm:flex-row items-center sm:items-end justify-between w-full px-4 sm:px-8 pb-0 sm:pb-10 gap-6 sm:gap-8">
           <img
             src={m.poster}
             alt={title}
             className="w-36 sm:w-48 md:w-56 rounded-xl sm:rounded-2xl shadow-lg"
           />
 
-          <div className="text-center sm:text-left max-w-2xl">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2">{title}</h1>
+          <div className="text-center sm:text-left max-w-2xl w-full">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-2 leading-tight">{title}</h1>
             {isKhmer && m.titleKm && (
               <p className="text-gray-400 text-sm mb-1">{m.title}</p>
             )}
 
-            <p className="flex flex-wrap justify-center sm:justify-start items-center gap-2 sm:gap-4 text-gray-300 text-sm sm:text-base">
-              <span>{m.releaseYear}</span> •
-              <Clock className="w-4 h-4" /> {m.runtime} • {genreList.join(" | ")}
-            </p>
+            <div className="flex flex-wrap justify-center sm:justify-start items-center gap-x-2 gap-y-1 text-gray-300 text-sm sm:text-base">
+              <span>{m.releaseYear}</span>
+              <span className="text-gray-600">•</span>
+              <span className="flex items-center gap-1">
+                <Clock className="w-4 h-4" /> {m.runtime}
+              </span>
+              <span className="text-gray-600">•</span>
+              <span>{genreList.join(" | ")}</span>
+            </div>
 
             <p className="flex justify-center sm:justify-start items-center gap-1 mt-2 text-yellow-400 text-sm sm:text-base">
               <Star className="w-4 h-4 fill-yellow-400" /> {m.rating}/10
@@ -137,28 +146,28 @@ function MovieDetail() {
             </p>
 
             {/* Buttons */}
-            <div className="flex flex-wrap justify-center sm:justify-start gap-3 sm:gap-4 mt-6">
+            <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-3 sm:gap-4 mt-6 max-w-sm sm:max-w-none mx-auto sm:mx-0">
               <a
                 href="#trailer"
-                className="bg-red-600 hover:bg-red-700 px-5 sm:px-6 py-2 sm:py-3 rounded-full flex items-center gap-2 text-sm sm:text-base"
+                className="bg-red-600 hover:bg-red-700 px-5 sm:px-6 py-2 sm:py-3 rounded-full flex items-center justify-center sm:justify-start gap-2 text-sm sm:text-base"
               >
-                <Play /> {t("Watch Trailer", "មើលវីដេអូ")}
+                <Play className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" /> {t("Watch Trailer", "មើលវីដេអូ")}
               </a>
 
               <a
                 href="#showtimes"
-                className="bg-green-600 hover:bg-green-500 px-5 sm:px-6 py-2 sm:py-3 rounded-full flex items-center gap-2 text-sm sm:text-base font-semibold"
+                className="bg-green-600 hover:bg-green-500 px-5 sm:px-6 py-2 sm:py-3 rounded-full flex items-center justify-center sm:justify-start gap-2 text-sm sm:text-base font-semibold"
               >
-                <Ticket /> {t("Book Tickets", "កក់សំបុត្រ")}
+                <Ticket className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" /> {t("Book Tickets", "កក់សំបុត្រ")}
               </a>
 
               <button
                 onClick={toggleFavorite}
                 className={`${
                   isFavorite ? "bg-red-600 hover:bg-red-700" : "bg-gray-800 hover:bg-gray-700"
-                } px-5 sm:px-6 py-2 sm:py-3 rounded-full flex items-center gap-2 text-sm sm:text-base`}
+                } col-span-2 sm:col-auto px-5 sm:px-6 py-2 sm:py-3 rounded-full flex items-center justify-center sm:justify-start gap-2 text-sm sm:text-base`}
               >
-                {isFavorite ? <Heart className="fill-red-500 text-red-500" /> : <Heart />}
+                {isFavorite ? <Heart className="w-4 h-4 sm:w-5 sm:h-5 shrink-0 fill-red-500 text-red-500" /> : <Heart className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />}
                 {isFavorite ? t("Favorited", "បានចូលចិត្ត") : t("Favorite", "ចូលចិត្ត")}
               </button>
             </div>
